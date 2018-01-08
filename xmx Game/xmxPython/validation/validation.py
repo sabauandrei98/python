@@ -11,18 +11,17 @@ class validator:
             raise raiseException("Coords are not numbers !")
 
     @staticmethod
-    def pointOnMap(x, y):
-        maxSize = 8 - 1
+    def pointOnMap(x, y, maxX, maxY):
         x = int(x)
         y = int(y)
 
-        if x > maxSize or y > maxSize or x < 0 or y < 0:
+        if x > maxX - 1 or y > maxY - 1 or x < 0 or y < 0:
             return False
 
         return True
 
     @staticmethod
-    def checkInput(cmd):
+    def checkInput(cmd, maxX, maxY):
 
         if len(cmd) != 2:
             raise raiseException("Invalid input length !")
@@ -30,6 +29,6 @@ class validator:
         if validator.isInt(cmd[0]) and validator.isInt(cmd[1]):
             pass
 
-        if not validator.pointOnMap(cmd[0], cmd[1]):
+        if not validator.pointOnMap(cmd[0], cmd[1], maxX, maxY):
             raise raiseException("No such point on map !")
 
